@@ -10,9 +10,9 @@ export function* helloSaga() {
 // 1. This worker saga will perform the async increment task
 // incrementAsync Saga sleeps for 1 second via the call to delay(1000), then dispatches an INCREMENT action.
 export function* incrementAsync() {
-  
+
   // this function blocks the Generator.
-  // delay is a util fn that returns a prom
+  // delay is a util fn that returns a promise
   yield delay(1000)
 
   // put is one example of what we call an Effect. Effects are simple JavaScript objects which contain instructions to be fulfilled by the middleware. When a middleware retrieves an Effect yielded by a Saga, the Saga is paused until the Effect is fulfilled.
@@ -73,5 +73,9 @@ export function* watchFetchAppleProducts() {
 }
 
 export function* rootSaga() {
-  yield all([helloSaga(), watchIncrementAsync(), watchFetchAppleProducts()])
+  yield all([
+    helloSaga(),
+    watchIncrementAsync(),
+    watchFetchAppleProducts()
+  ])
 }

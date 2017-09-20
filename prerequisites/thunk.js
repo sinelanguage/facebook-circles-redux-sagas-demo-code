@@ -1,26 +1,3 @@
-// Syncronous Redux Actions Creators
-
-export function itemsHasErrored(bool) {
-    return {
-        type: 'ITEMS_HAS_ERRORED',
-        hasErrored: bool
-    };
-}
-
-export function itemsIsLoading(bool) {
-    return {
-        type: 'ITEMS_IS_LOADING',
-        isLoading: bool
-    };
-}
-
-export function itemsFetchDataSuccess(items) {
-    return {
-        type: 'ITEMS_FETCH_DATA_SUCCESS',
-        items
-    };
-}
-
 // Thunk allows you to write action creators that return a function instead of an action. The inner function can receive the store methods dispatch and getState as parameters,
 
 export function errorAfterFiveSeconds() {
@@ -28,7 +5,7 @@ export function errorAfterFiveSeconds() {
     return (dispatch) => {
         setTimeout(() => {
             // This function is able to dispatch other action creators
-            dispatch(itemsHasErrored(true));
+            dispatch(itemsHasErrored(true))
         }, 5000);
     };
 }
@@ -40,15 +17,27 @@ export function itemsFetchData(url) {
         fetch(url)
             .then((response) => {
                 if (!response.ok) {
-                    throw Error(response.statusText);
+                    throw Error(response.statusText)
                 }
 
-                dispatch(itemsIsLoading(false));
+                dispatch(itemsIsLoading(false))
 
+                // dispatch(showModal(true))
+                // dispatch(showChat(true))
+                // dispatch ...
+                // dispatch ...
+                // dispatch ...
                 return response;
             })
-            .then((response) => response.json())
+            .then((response) => {
+              response.json()
+                // dispatch(showModal(false))
+                // dispatch(showChat(false))
+                // dispatch ...
+                // dispatch ...
+                // dispatch ...
+            )
             .then((items) => dispatch(itemsFetchDataSuccess(items)))
-            .catch(() => dispatch(itemsHasErrored(true)));
+            .catch(() => dispatch(itemsHasErrored(true)))
     };
 }
