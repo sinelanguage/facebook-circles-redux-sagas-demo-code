@@ -1,6 +1,6 @@
 /*eslint-disable no-unused-vars */
 import React, { Component, PropTypes } from "react"
-import AppleProducts from './src/components/apple-products.component'
+import AppleProducts from './apple-products.component'
 
 const Counter = ({ value, onIncrement, onIncrementAsync, onDecrement, fetchAppleProducts }) => (
   <div>

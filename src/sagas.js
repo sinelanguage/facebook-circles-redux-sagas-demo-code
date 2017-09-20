@@ -2,7 +2,7 @@ import { delay } from "redux-saga"
 import { put, takeEvery, all, call } from "redux-saga/effects"
 
 // This is our first generator function itself.
-
+// It does not yield so once it returns, its 'DONE'
 export function* helloSaga() {
   console.log("Hello Sagas!")
 }
@@ -25,6 +25,7 @@ export function* incrementAsync() {
 
 // 2. This watcher will spawn a new incrementAsync task on each INCREMENT_ASYNC
 export function* watchIncrementAsync() {
+
   // takeEvery is a redux-saga helper function that allows concurrent instances of incrementAsync to be invoked with no regard for when each one returns.
   yield takeEvery("INCREMENT_ASYNC", incrementAsync)
 }
@@ -40,12 +41,16 @@ function* fetchProducts(dispatch) {
   const APPLE_PRODUCTS = yield fetch('../src/server/mock-data.json');
   dispatch({ type: 'APPLE_PRODUCTS_RECEIVED', APPLE_PRODUCTS })
 }
+
+Keep in mind dispatch isn't listening for concurrency and is not managed by any middleware.  This can lead to bugs.
 */
 
 export function* fetchAppleProductsAsync() {
   try {
+
     // fetching Apple products
     console.log("fetching Apple Products")
+    yield delay(1000)
 
     // call can take an function that returns a promise OR another generator fn
     const response = yield call(fetch, "../src/server/mock-data.json")
@@ -65,6 +70,7 @@ export function* fetchAppleProductsAsync() {
 }
 
 export function* watchFetchAppleProducts() {
+
   // make sure this action type is different then what you put in the watched saga, otherwise you will enter into an endless loop
   let APPLE_PRODUCTS = yield takeEvery(
     "APPLE_PRODUCTS_REQUESTED",

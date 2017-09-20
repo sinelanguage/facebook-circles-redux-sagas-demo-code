@@ -9,8 +9,8 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import createSagaMiddleware from "redux-saga"
 
 //...
-import { rootSaga, fetchStuff } from "./src/sagas"
-import Counter from "./Counter"
+import { rootSaga, fetchStuff } from "./sagas"
+import Counter from "./components/counter.component"
 import reducer from "./reducers"
 
 //...
