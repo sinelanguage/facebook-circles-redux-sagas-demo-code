@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id:": "01",
+      "name": "Apple Macbook Pro",
+      "price": 3999.99,
+      "color": "Space Grey"
+    },
+    {
+      "id:": "02",
+      "name": "Apple Macbook",
+      "price": 1999.99,
+      "color": "Rose Gold"
+    },
+    {
+      "id:": "03",
+      "name": "iPhone X",
+      "price": 1999.99,
+      "color": "Jet Black"
+    },
+    {
+      "id:": "04",
+      "name": "iPhone 8",
+      "price": 999.99,
+      "color": "Space Grey"
+    }
+  ]
+}
