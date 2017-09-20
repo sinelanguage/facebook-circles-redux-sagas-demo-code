@@ -33,7 +33,7 @@ const action = type => store.dispatch({ type })
 function render() {
   ReactDOM.render(
     <Counter
-      value={store.getState()}
+      value={store.getState().counter}
       onIncrement={() => action("INCREMENT")}
       onIncrementAsync={() => action("INCREMENT_ASYNC")}
       onDecrement={() => action("DECREMENT")}

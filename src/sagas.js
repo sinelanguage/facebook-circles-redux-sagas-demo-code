@@ -63,7 +63,7 @@ export function* fetchAppleProductsAsync() {
     console.log("APPLE_PRODUCTS: ", APPLE_PRODUCTS)
 
     // create and yield a dispatch Effect instead of just calling dispatch directly on the Store object as shown above
-    yield put({ type: "APPLE_PRODUCTS_RECEIVED" })
+    yield put({ type: "APPLE_PRODUCTS_RECEIVED", payload: APPLE_PRODUCTS})
   } catch (e) {
     console.log("error")
   }
